@@ -138,6 +138,29 @@ pnpm dev
 
 [http://localhost:3000](http://localhost:3000) 접속
 
+### Supabase 설정
+
+1. [supabase.com](https://supabase.com/) 에서 프로젝트 생성 후 URL / 키를 `.env.local` 에 입력
+2. **Google OAuth** -- [Google Cloud Console](https://console.cloud.google.com/apis/credentials) 에서 OAuth 2.0 클라이언트 ID (웹 애플리케이션) 를 만들고, 승인된 리디렉션 URI 에 다음을 추가:
+
+   ```
+   https://<your-project-ref>.supabase.co/auth/v1/callback
+   ```
+
+   그 Client ID / Secret 으로 Supabase **Authentication > Providers** 에서 **Google** 프로바이더 활성화.
+3. **Redirect URLs** -- **Authentication > URL Configuration** 에서 Site URL 을 설정하고 앱의 콜백 주소를 추가 (앱은 `<origin>/auth/callback` 으로 돌아옴):
+
+   ```
+   http://localhost:3000/auth/callback
+   https://your-domain.com/auth/callback
+   ```
+
+### 단일 계정 vs 멀티 계정
+
+Refine 은 기본적으로 **멀티유저**입니다 -- Google 계정만 있으면 누구나 가입할 수 있고, Row Level Security 가 사용자별 데이터를 완전히 격리합니다.
+
+**개인용(단일 계정)으로 운영**하려면: 본인 Google 계정으로 1회 로그인한 뒤, Supabase **Authentication > Sign In / Providers** 에서 **"Allow new users to sign up"** 을 끄세요. 기존 계정은 그대로 동작하고 신규 가입만 차단됩니다.
+
 ### 데이터베이스 설정
 
 Supabase SQL 에디터에서 마이그레이션 순서대로 실행:
@@ -183,14 +206,14 @@ pnpm test:watch  # 워치 모드
 
 ### Android
 1. Chrome에서 사이트 열기
-2. 주소창의 "설치" 클릭
-3. 홈 화면에 추가 -- 공유 시트에서 "Refine" 선택 가능
+2. 주소창의 "설치" 클릭 -- 홈 화면에 앱 추가됨
+3. **링크 저장:** 아무 앱(YouTube, Instagram, 브라우저 등)에서 공유 -> 공유 시트에서 **Refine** 선택 -> 즉시 저장되고 AI 분류·요약·태그는 백그라운드에서 처리됨
 
-### iOS
+### iOS (애플)
 1. Safari에서 사이트 열기
 2. 공유 버튼 -> "홈 화면에 추가"
-3. iOS는 Share Target API 미지원
-4. **대안:** 앱 내 "링크 추가" 버튼에서 클립보드 붙여넣기 사용
+3. iOS는 Share Target API 미지원이라 공유 시트로 직접 저장은 불가
+4. **링크 저장:** 아무 앱에서 URL 복사 -> Refine 열기 -> **링크 추가** 버튼에서 클립보드 붙여넣기로 저장
 
 ---
 

@@ -243,6 +243,29 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
+### Supabase Setup
+
+1. Create a project at [supabase.com](https://supabase.com/) and copy the URL / keys into `.env.local`
+2. **Google OAuth** -- In [Google Cloud Console](https://console.cloud.google.com/apis/credentials), create an OAuth 2.0 Client ID (Web application) with this authorized redirect URI:
+
+   ```
+   https://<your-project-ref>.supabase.co/auth/v1/callback
+   ```
+
+   Then enable the **Google** provider in Supabase **Authentication > Providers** with that Client ID / Secret.
+3. **Redirect URLs** -- In **Authentication > URL Configuration**, set your Site URL and add the app's callback (the app returns to `<origin>/auth/callback`):
+
+   ```
+   http://localhost:3000/auth/callback
+   https://your-domain.com/auth/callback
+   ```
+
+### Single-user vs Multi-user
+
+Refine is **multi-user by default** -- anyone with a Google account can sign up, and Row Level Security keeps each user's data fully isolated.
+
+For a **personal (single-user) deployment**: sign in once with your own Google account, then disable **"Allow new users to sign up"** in Supabase **Authentication > Sign In / Providers**. Your account keeps working; new sign-ups are blocked.
+
 ### Database Setup
 
 Run migrations in order in the Supabase SQL Editor:
@@ -287,15 +310,15 @@ pnpm test:watch  # Watch mode
 ## PWA Installation
 
 ### Android
-1. Open site in Chrome
-2. Click "Install" in the address bar
-3. App added to home screen -- Can select "Refine" from share sheet
+1. Open the site in Chrome
+2. Click "Install" in the address bar -- app is added to the home screen
+3. **Saving links:** in any app (YouTube, Instagram, browser, ...), tap Share -> pick **Refine** from the share sheet -> the link is saved instantly; AI classification, summary, and tags run in the background
 
-### iOS
-1. Open site in Safari
+### iOS (Apple)
+1. Open the site in Safari
 2. Share button -> "Add to Home Screen"
-3. iOS doesn't support Share Target API
-4. **Workaround:** Use the in-app "Add Link" button with clipboard paste
+3. iOS doesn't support the Share Target API, so links can't be shared directly into Refine
+4. **Saving links:** copy the URL in any app, open Refine, tap the **Add Link** button -- paste the URL from the clipboard and save
 
 ---
 
