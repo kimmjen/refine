@@ -60,7 +60,7 @@ A personal bookmark manager that automatically collects shared links from mobile
 - **Platform Metadata** -- GitHub stars/forks, Twitter oEmbed, YouTube thumbnails
 
 ### Internationalization (i18n)
-- **English / Korean** -- Full bilingual support with 241 translation keys
+- **English / Korean** -- Full bilingual support with 240 translation keys
 - **Locale Switching** -- Header dropdown + Settings page language selection
 - **AI Output Language** -- Per-user preferred language for AI summaries and tags
 
@@ -73,7 +73,7 @@ A personal bookmark manager that automatically collects shared links from mobile
 - **Input Validation** -- Field whitelisting on update, sortBy validation on admin queries
 
 ### Admin Dashboard
-- **Access** -- On the login page (`/auth/login`), press `Ctrl + Shift + Q` to reveal the admin login form
+- **Access** -- Grant admin via the `admin_users` table (see [Admin Account Setup](#admin-account-setup-optional)), then open `/admin`. The login page also has a hidden email/password admin form (`Ctrl + Shift + Q`)
 - **System Stats** -- Total users, global link counts, recent platform activity
 - **User Management** -- View all users, toggle admin privileges, delete accounts, inspect user details
 - **Database Tools** -- Live schema inspector (tables, functions, RLS policies) and SQL console
@@ -258,6 +258,22 @@ supabase/migrations/007_error_logs.sql
 supabase/migrations/008_performance_indexes.sql
 supabase/migrations/009_rls_metadata_images.sql
 ```
+
+### Admin Account Setup (optional)
+
+Admin access is controlled by the `admin_users` table. To grant yourself admin on a fresh instance:
+
+1. Sign in to the app once with Google (this creates your user in `auth.users`)
+2. In the Supabase SQL Editor, run:
+
+```sql
+INSERT INTO admin_users (user_id)
+SELECT id FROM auth.users WHERE email = 'you@example.com';
+```
+
+3. Open `/admin` -- you now have access to the admin dashboard
+
+Additional admins can then be granted from Admin > User Management, or with the same SQL.
 
 ### Testing
 

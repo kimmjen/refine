@@ -59,7 +59,7 @@
 - **플랫폼 메타데이터** -- GitHub 스타/포크, Twitter oEmbed, YouTube 썸네일
 
 ### 다국어 (i18n)
-- **영어 / 한국어** -- 241개 번역 키로 완전한 양언어 지원
+- **영어 / 한국어** -- 240개 번역 키로 완전한 양언어 지원
 - **로캘 전환** -- 헤더 드롭다운 + 설정 페이지에서 언어 변경
 - **AI 출력 언어** -- 사용자별 AI 요약/태그 출력 언어 설정
 
@@ -72,7 +72,7 @@
 - **입력 검증** -- update-link 필드 화이트리스트, admin/db sortBy 검증
 
 ### 관리자 대시보드
-- **접근** -- 로그인 페이지에서 `Ctrl + Shift + Q`로 관리자 로그인 폼 표시
+- **접근** -- `admin_users` 테이블로 관리자 지정 후 (아래 [관리자 계정 설정](#관리자-계정-설정-선택) 참고) `/admin` 접속. 로그인 페이지에 숨겨진 이메일/비밀번호 관리자 폼도 있음 (`Ctrl + Shift + Q`)
 - **시스템 통계** -- 전체 사용자, 링크 수, 최근 활동
 - **사용자 관리** -- 사용자 목록, 권한 토글, 삭제, 상세 확인
 - **데이터베이스 도구** -- 실시간 스키마 조회 및 SQL 콘솔
@@ -153,6 +153,22 @@ supabase/migrations/007_error_logs.sql
 supabase/migrations/008_performance_indexes.sql
 supabase/migrations/009_rls_metadata_images.sql
 ```
+
+### 관리자 계정 설정 (선택)
+
+관리자 권한은 `admin_users` 테이블로 관리됩니다. 새 인스턴스에서 최초 관리자를 지정하려면:
+
+1. 앱에서 Google 로그인 1회 (`auth.users` 에 계정 생성됨)
+2. Supabase SQL Editor 에서 실행:
+
+```sql
+INSERT INTO admin_users (user_id)
+SELECT id FROM auth.users WHERE email = 'you@example.com';
+```
+
+3. `/admin` 접속 -- 관리자 대시보드 사용 가능
+
+이후 추가 관리자는 Admin > 유저 관리에서 지정하거나 같은 SQL로 추가할 수 있습니다.
 
 ### 테스트
 

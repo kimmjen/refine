@@ -101,7 +101,6 @@
     "auth_admin_login_failed": "Admin login failed.",
     "auth_email": "Email",
     "auth_password": "Password",
-    "auth_autofill": "Auto-fill Admin Credentials",
     "auth_sign_in_admin": "Sign in as Admin",
     "auth_back_to_google": "Back to Google Login",
     "auth_terms": "By continuing, you agree to our Terms and Privacy Policy.",

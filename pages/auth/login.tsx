@@ -136,17 +136,6 @@ export default function LoginPage() {
                     required
                   />
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setAdminEmail('admin@refine.app');
-                    setAdminPassword('RefineAdmin2024!');
-                  }}
-                  className="w-full h-8 text-xs text-muted-foreground border-dashed"
-                >
-                  {t('auth_autofill')}
-                </Button>
                 <Button type="submit" disabled={isLoading} className="w-full h-10 gap-2 text-xs font-medium bg-red-600 hover:bg-red-700">
                   {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Shield className="h-4 w-4" />}
                   {t('auth_sign_in_admin')}
