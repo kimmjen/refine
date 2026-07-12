@@ -2,6 +2,8 @@
 
 > **Curate your knowledge** -- A PWA app for collecting, organizing, and enriching links with AI
 
+**English** | [한국어](./README_KO.md)
+
 **[Live Demo](https://refine-rust.vercel.app/)**
 
 A personal bookmark manager that automatically collects shared links from mobile, classifies them with AI, and enriches content with summaries and tags.
@@ -58,7 +60,7 @@ A personal bookmark manager that automatically collects shared links from mobile
 - **Platform Metadata** -- GitHub stars/forks, Twitter oEmbed, YouTube thumbnails
 
 ### Internationalization (i18n)
-- **English / Korean** -- Full bilingual support with 240+ translation keys
+- **English / Korean** -- Full bilingual support with 241 translation keys
 - **Locale Switching** -- Header dropdown + Settings page language selection
 - **AI Output Language** -- Per-user preferred language for AI summaries and tags
 
@@ -198,6 +200,7 @@ idx_shared_links_user_created_at  (user_id, created_at DESC)
 | `GET` | `/api/playlist` | YouTube playlist | Yes | - |
 | `GET/PATCH` | `/api/settings` | User AI settings | Yes | - |
 | `POST` | `/api/error-log` | Client error collection | Optional | - |
+| `POST` | `/api/dispatch/cura` | Dispatch link to external Cura service | Yes | - |
 
 ### Admin Endpoints (require admin role)
 | Method | Endpoint | Description |
@@ -219,6 +222,8 @@ idx_shared_links_user_created_at  (user_id, created_at DESC)
 
 ### Environment Variables
 
+Copy [`.env.example`](./.env.example) to `.env.local` and fill in your keys:
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_public_key
@@ -232,6 +237,7 @@ GEMINI_API_KEY=your_gemini_api_key
 git clone https://github.com/kimmjen/refine.git
 cd refine
 pnpm install
+cp .env.example .env.local   # then fill in your keys
 pnpm dev
 ```
 
@@ -256,7 +262,7 @@ supabase/migrations/009_rls_metadata_images.sql
 ### Testing
 
 ```bash
-pnpm test        # Run all tests (46 tests)
+pnpm test        # Run all tests (82 tests)
 pnpm test:watch  # Watch mode
 ```
 
@@ -291,6 +297,16 @@ pnpm test:watch  # Watch mode
 
 ---
 
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow and code conventions.
+
+- Bugs / feature requests -> [GitHub Issues](https://github.com/kimmjen/refine/issues)
+- Security vulnerabilities -> [SECURITY.md](./SECURITY.md) (do **not** open a public issue)
+- Community standards -> [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+
+---
+
 ## License
 
-MIT License
+[MIT License](./LICENSE)

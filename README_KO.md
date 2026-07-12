@@ -2,6 +2,8 @@
 
 > **지식을 큐레이션하세요** -- AI로 링크를 수집, 분류, 요약하는 PWA 앱
 
+[English](./README.md) | **한국어**
+
 **[Live Demo](https://refine-rust.vercel.app/)**
 
 모바일 공유 시트에서 링크를 저장하고, AI가 자동으로 카테고리를 분류하고, 요약과 태그를 생성하는 개인 북마크 매니저입니다.
@@ -57,7 +59,7 @@
 - **플랫폼 메타데이터** -- GitHub 스타/포크, Twitter oEmbed, YouTube 썸네일
 
 ### 다국어 (i18n)
-- **영어 / 한국어** -- 244개 이상 번역 키로 완전한 양언어 지원
+- **영어 / 한국어** -- 241개 번역 키로 완전한 양언어 지원
 - **로캘 전환** -- 헤더 드롭다운 + 설정 페이지에서 언어 변경
 - **AI 출력 언어** -- 사용자별 AI 요약/태그 출력 언어 설정
 
@@ -101,7 +103,7 @@
 | **아이콘** | Lucide React |
 | **스크래핑** | Cheerio |
 | **데이터 페칭** | SWR |
-| **테스트** | Vitest (72 tests) |
+| **테스트** | Vitest (82 tests) |
 
 ---
 
@@ -114,6 +116,8 @@
 - Google Gemini API 키
 
 ### 환경 변수
+
+[`.env.example`](./.env.example) 을 `.env.local` 로 복사한 뒤 키를 채워주세요:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
@@ -128,6 +132,7 @@ GEMINI_API_KEY=your_gemini_api_key
 git clone https://github.com/kimmjen/refine.git
 cd refine
 pnpm install
+cp .env.example .env.local   # 키 입력
 pnpm dev
 ```
 
@@ -152,7 +157,7 @@ supabase/migrations/009_rls_metadata_images.sql
 ### 테스트
 
 ```bash
-pnpm test        # 전체 테스트 실행 (72개)
+pnpm test        # 전체 테스트 실행 (82개)
 pnpm test:watch  # 워치 모드
 ```
 
@@ -187,6 +192,16 @@ pnpm test:watch  # 워치 모드
 
 ---
 
+## 기여하기
+
+컨트리뷰션을 환영합니다! 워크플로우와 코드 컨벤션은 [CONTRIBUTING.md](./CONTRIBUTING.md) 를 참고하세요.
+
+- 버그 / 기능 제안 -> [GitHub Issues](https://github.com/kimmjen/refine/issues)
+- 보안 취약점 -> [SECURITY.md](./SECURITY.md) (public issue 로 올리지 마세요)
+- 행동 규범 -> [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+
+---
+
 ## 라이선스
 
-MIT License
+[MIT License](./LICENSE)
