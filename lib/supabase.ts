@@ -3,10 +3,10 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-// 환경변수 유효성 체크
+// 환경변수 유효성 체크 (http는 로컬 Supabase 스택용)
 const isConfigured = supabaseUrl && supabaseAnonKey &&
   !supabaseUrl.includes('placeholder') &&
-  supabaseUrl.startsWith('https://');
+  /^https?:\/\//.test(supabaseUrl);
 
 // 싱글톤 패턴으로 브라우저 클라이언트 관리
 let browserClient: SupabaseClient | null = null;

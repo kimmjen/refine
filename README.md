@@ -16,6 +16,18 @@ A personal bookmark manager that automatically collects shared links from mobile
 
 ---
 
+## Screenshots
+
+| Dashboard | Link Detail (AI summary & tags) |
+|---|---|
+| ![Dashboard](./docs/screenshots/dashboard.png) | ![Link detail](./docs/screenshots/link-detail.png) |
+
+| AI Settings | Admin Dashboard |
+|---|---|
+| ![AI settings](./docs/screenshots/settings.png) | ![Admin dashboard](./docs/screenshots/admin.png) |
+
+---
+
 ## Features
 
 ### Core
@@ -31,7 +43,9 @@ A personal bookmark manager that automatically collects shared links from mobile
 - **AI Tag Extraction** -- Up to 5 relevant keywords per link
 - **Bulk Backfill** -- Batch AI enrichment for existing links (category + summary + tags)
 - **Individual Enrich** -- Manual AI enrichment per link from detail page
-- **Per-user AI Settings** -- Provider selection, auto features toggle, output language
+- **Per-user AI Settings** -- Provider API keys (Gemini / OpenAI / Claude), auto features toggle, output language
+
+> **Note:** AI enrichment currently runs on **Google Gemini** (server-side `GEMINI_API_KEY`). OpenAI (ChatGPT) and Anthropic (Claude) API keys can be registered in Settings, but multi-provider execution is not wired up yet -- it's on the roadmap.
 
 ### Category Management
 - **Custom Categories** -- Add, delete, reorder via dedicated management page
@@ -271,6 +285,7 @@ For a **personal (single-user) deployment**: sign in once with your own Google a
 Run migrations in order in the Supabase SQL Editor:
 
 ```bash
+supabase/migrations/000_initial_schema.sql   # base tables (fresh installs)
 supabase/migrations/001_add_user_id.sql
 supabase/migrations/002_add_dispatch_tracking.sql
 supabase/migrations/003_user_settings.sql
