@@ -4,8 +4,6 @@
 
 **English** | [한국어](./README_KO.md)
 
-**[Live Demo](https://refine-rust.vercel.app/)**
-
 A personal bookmark manager that automatically collects shared links from mobile, classifies them with AI, and enriches content with summaries and tags.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)

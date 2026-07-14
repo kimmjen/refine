@@ -4,8 +4,6 @@
 
 [English](./README.md) | **한국어**
 
-**[Live Demo](https://refine-rust.vercel.app/)**
-
 모바일 공유 시트에서 링크를 저장하고, AI가 자동으로 카테고리를 분류하고, 요약과 태그를 생성하는 개인 북마크 매니저입니다.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
